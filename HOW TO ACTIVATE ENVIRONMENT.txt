@@ -1,0 +1,7 @@
+HOW TO ACTIVATE VIRTUAL ENVIRONMENT
+
+UNDER JARVIS FOLDER: "cd jarvis"
+TYPE THIS: "virtualenv\Scripts\activate"
+
+RESULT: (virtualenv) C:\
+
