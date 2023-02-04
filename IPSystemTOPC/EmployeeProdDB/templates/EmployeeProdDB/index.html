@@ -1,0 +1,6 @@
+<form>
+    <input type="file" id="file-input">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
