@@ -11,17 +11,20 @@ from django.shortcuts import render
         # ...
 #    return render(request, 'uploadpage.html')
 
-def upload_file(request):
-    if request.method == 'POST':
-        form = Upload(request.POST.get('file'), request.FILES.get('file'))
-        if form.is_valid():
-            form.save()
-            return redirect('success_url')
-    else:
-        form = Upload()
-    return render(request, 'uploadpage.html', {'form': form})
+def login_page(request):
+        return render(request, 'loginpage.html')
 
-def index(request):
-    return render(request, 'employeeproddb/index.html')
+#def upload_file(request):
+#    if request.method == 'POST':
+#        form = Upload(request.POST.get('file'), request.FILES.get('file'))
+#        if form.is_valid():
+#            form.save()
+#            return redirect('success_url')
+#    else:
+#        form = Upload()
+#    return render(request, 'uploadpage.html', {'form': form})
+
+#def index(request):
+#    return render(request, 'index.html')
     
 
