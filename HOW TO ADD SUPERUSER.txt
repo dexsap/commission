@@ -1,0 +1,22 @@
+SUPERUSER CREDENTIALS
+
+1. Jarvis
+   PW: TOPC2023
+   (jacob.vitug@obf.ateneo.edu)
+2. 
+
+HOW TO:
+1. activate virtual env
+2. go to: C:\Users\Jacob Vitug\Desktop\JARVIS\jarvis\IPSystemTOPC
+3. type the ff codes:
+python manage.py migrate
+python manage.py createsuperuser
+4. create your account with a username, email address (maybe use obf nalang), 
+and password
+5. make sure to add your credentials here if you want so we can all help each 
+other out
+
+TO ACCESS SUPERUSER:
+1. runserver
+2. in the url given, add "/admin" at the end
+3. log in with superuser credentials
