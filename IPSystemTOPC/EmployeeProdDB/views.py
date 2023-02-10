@@ -4,6 +4,9 @@ from .models import Upload
 
 from django.shortcuts import render
 
+def home(request):
+        return render(request, 'EmployeeProdDB/index.html')
+
 #def handle_file_upload(request):
 #    if request.method == 'POST':
 #        file = request.FILES.get('file-input')
@@ -11,8 +14,8 @@ from django.shortcuts import render
         # ...
 #    return render(request, 'uploadpage.html')
 
-def login_page(request):
-        return render(request, 'loginpage.html')
+#def login_page(request):
+#        return render(request, 'loginpage.html')
 
 #def upload_file(request):
 #    if request.method == 'POST':

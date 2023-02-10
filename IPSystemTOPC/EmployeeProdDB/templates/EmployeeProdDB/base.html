@@ -1,0 +1,29 @@
+{% load static %}
+
+<!doctype html>
+<head>
+<!-- <title> Base Template </title> -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="icon" href="{% static 'images/topc_logo.jpg' %}" sizes="9x16">
+</head>
+<body>
+    <div id="topbar">
+        <a href="#"><img src="{% static 'images/topc_logo.jpg' %}" class="img logo rounded-circle mb-5" style="height: 200px; width: 200px;"></a>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!-- Page Content  -->
+            {% block content %}
+            {% endblock %}
+
+
+    <script src="{% static 'css/bootstrap-4.1.3-dist/js/bootstrap.min.js' %}"></script>
+</body>
+<footer>
+    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script></p>
+</footer>
+</html>

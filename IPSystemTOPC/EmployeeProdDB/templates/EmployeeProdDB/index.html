@@ -1,6 +1,21 @@
-<form>
-    <input type="file" id="file-input">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-</form>
+{% extends 'EmployeeProdDB/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <title> Home Page </title>
+</head>
+<body>
+    <div style="width:100%">
+        <h1>TOPC</h1>
+        <!-- <form>
+            <input type="file" id="file-input">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form> -->
+    </div>
+</body>
+
+{% endblock %}
