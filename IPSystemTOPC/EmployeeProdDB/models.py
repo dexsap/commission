@@ -107,3 +107,33 @@ class Dashboard(models.Model):
 #                name='dashboard_fk2'
 #            )
 #        ]
+
+class User(models.Model):
+    username = models.CharField(max_length=300, unique=True)
+    password = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=300)
+    last_name = models.CharField(max_length=300)
+    birthday = models.DateField()
+    sex = models.CharField(max_length=50)
+    objects = models.Manager()
+
+    def getUsername(self):
+        return self.username
+
+    def getPassword(self):
+        return self.password
+
+    def getFirstName(self):
+        return self.first_name
+
+    def getLastName(self):
+        return self.last_name
+
+    def getBirthday(self):
+        return self.birthday
+
+    def getSex(self):
+        return self.sex
+
+    def __str__(self):
+        return "pk: " + str(self.pk) + ": " + self.username + ", " + self.first_name + " " + self.last_name + ", " + str(self.birthday) + ", " + self.sex

@@ -1,13 +1,37 @@
 import csv
 from datetime import datetime
 from django.shortcuts import render, redirect
-from .models import Productivity
+from .models import Productivity, User
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
 from dateutil.parser import parse as parse_date
 
 def home(request):
-        return render(request, 'EmployeeProdDB/index.html')
+        return render(request, 'EmployeeProdDB/home.html')
+
+def loginpage(request):
+    if(request.method == "POST"):
+        uname = request.POST.get('username')
+        pword = request.POST.get('password')
+
+        accountList = User.objects.filter(username = uname)
+
+        if(len(accountList) > 0):
+            findUser = User.objects.get(username= uname)
+
+            if(findUser.getPassword() == pword):
+                global loggedInUser
+                loggedInUser = findUser
+                messages.success(request, 'SUCCESSFULLY LOGGED IN!')
+                return redirect('home')
+            else:
+                messages.info(request, 'Invalid Username or Password')
+                return render(request, 'EmployeeProdDB/loginpage.html')
+        else:
+            messages.info(request, 'User Account Not Found')
+            return render(request, 'EmployeeProdDB/loginpage.html')
+    else:
+        return render(request, 'EmployeeProdDB/loginpage.html')
 
 def upload_csv(request):
     if request.method == 'POST':
@@ -56,6 +80,8 @@ def upload_csv(request):
 def show_csv_data(request):
     csv_data = Productivity.objects.all()
     return render(request, 'EmployeeProdDB/show_csv_data.html', {'csv_data': csv_data})
+
+
 #def handle_file_upload(request):
 #    if request.method == 'POST':
 #        file = request.FILES.get('file-input')
