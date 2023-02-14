@@ -1,25 +1,61 @@
 import csv
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Productivity
-
-
-from django.shortcuts import render
+from django.contrib import messages
+from django.utils.dateparse import parse_date, parse_duration
+from dateutil.parser import parse as parse_date
 
 def home(request):
         return render(request, 'EmployeeProdDB/index.html')
 
-def csv_import(request):
-    with open('C:\Users\dxsap\Downloads\IPS_dummy_data.csv') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            my_model = Productivity(
-                field1=row[0],
-                field2=row[1],
-                field3=datetime.strptime(row[2], '%Y-%m-%d').date()
+def upload_csv(request):
+    if request.method == 'POST':
+        csv_file = request.FILES['csv_file']
+        if not csv_file.name.endswith('.csv'):
+            messages.error(request, 'This is not a CSV file')
+        else:
+            # read the data from the uploaded file
+            csv_data = csv.reader(
+                (line.decode('utf-8') for line in csv_file),
+                delimiter=',',
+                quotechar='"'
             )
-            my_model.save()
-    return render(request, 'csv_imported.html')
+
+            # create and save model instances for each row of data
+            for row in csv_data:
+                report_no = row[0]
+                employee_id = row[1]
+                prod_date_str = row[2]
+                #prod_date = row[2]
+                prod_date = None
+                if prod_date_str:
+                    prod_date = parse_date(prod_date_str)
+                workinghours_str = row[3]
+                workinghours = None
+                if workinghours_str:
+                    workinghours = parse_duration(workinghours_str)
+                remarks = row[4]
+                prod_score = row[5]
+
+                Productivity.objects.create(
+                    report_no=report_no,
+                    employee_id=employee_id,
+                    prod_date=prod_date,
+                    workinghours=workinghours,
+                    remarks=remarks,
+                    prod_score=prod_score,
+                    # add more fields as needed
+                )
+
+            return redirect('show_csv_data')
+
+    return render(request, 'EmployeeProdDB/upload_csv.html')
+
+
+def show_csv_data(request):
+    csv_data = Productivity.objects.all()
+    return render(request, 'EmployeeProdDB/show_csv_data.html', {'csv_data': csv_data})
 #def handle_file_upload(request):
 #    if request.method == 'POST':
 #        file = request.FILES.get('file-input')
