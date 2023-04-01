@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Productivity, User
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
-from dateutil.parser import parse as parse_date
+#from dateutil.parser import parse as parse_date
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
