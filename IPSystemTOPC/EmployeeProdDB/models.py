@@ -22,12 +22,15 @@ class Employee(models.Model):
 #        db_table = 'employee'
 
 class Productivity(models.Model):
-    report_no = models.CharField(max_length=10, primary_key=True)
-    employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
-    prod_date = models.DateField()
+    report_no = models.AutoField(max_length=10, primary_key=True)
+    #employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
+    prod_date = models.DateField(null=True)
     workinghours = models.DurationField()
     remarks = models.TextField(max_length=2000, blank=True)
     prod_score = models.FloatField(null=True)
+    joborder_no = models.CharField(max_length=10)
+    process = models.CharField(max_length=255)
+    status = models.CharField(max_length=255)
 
 #    class Meta:
 #        constraints = [
@@ -38,11 +41,11 @@ class Productivity(models.Model):
 #            )
 #        ]
 
-class JobOrder(models.Model):
-    joborder_no = models.CharField(max_length=10, primary_key=True)
-    report_no = models.ForeignKey('Productivity', on_delete=models.CASCADE)
-    process = models.CharField(max_length=255)
-    status = models.CharField(max_length=255)
+#class JobOrder(models.Model):
+    #joborder_no = models.CharField(max_length=10, primary_key=True)
+    #report_no = models.ForeignKey('Productivity', on_delete=models.CASCADE)
+    #process = models.CharField(max_length=255)
+    #status = models.CharField(max_length=255)
 
 
 class Position(models.Model):
