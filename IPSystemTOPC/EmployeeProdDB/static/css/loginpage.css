@@ -80,3 +80,19 @@ body {
     background-color: white;
     border: 1px solid black;
 }
+
+.base-logo {
+    width: 50px;
+    height: auto;
+}
+
+.base-logo img {
+    width: 50px;
+    height: auto;
+}
+
+.left-align-cont {
+    margin: auto;
+    display: flex;
+    justify-content: left;
+}
