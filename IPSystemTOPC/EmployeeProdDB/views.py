@@ -2,7 +2,7 @@ import io
 import csv
 from datetime import datetime, timedelta
 from django.shortcuts import render, redirect
-from .models import Productivity, User, Employee
+from .models import Productivity, User
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
 from dateutil.parser import parse as parse_date
@@ -10,7 +10,33 @@ from dateutil.parser import parse as parse_date
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
 
+def signup(request):
+    if request.method == 'POST':
+        uname = request.POST.get('username')
+        pword = request.POST.get('password')
+        confirm_pword = request.POST.get('confirm_password')
+        fname = request.POST.get('first_name')
+        lname = request.POST.get('last_name')
+        bday = request.POST.get('birthday')
+        sex = request.POST.get('sex')
 
+        if pword==confirm_pword:
+            if User.objects.filter(username=uname).exists():
+                messages.error(request, 'Username already taken.')
+                return redirect('signup')
+            else:
+                user = User.objects.create(username = uname, password = pword, first_name = fname, last_name = lname, birthday = bday, sex = sex)
+                user.save()
+                messages.success(request, 'User account created.')
+                return redirect('loginpage')
+        
+        else:
+            messages.info(request, 'Password does not match. Please try again.')
+            return redirect('signup')
+            
+    else:
+        return render(request, 'EmployeeProdDB/signup.html')
+    
 def loginpage(request):
     if(request.method == "POST"):
         uname = request.POST.get('username')

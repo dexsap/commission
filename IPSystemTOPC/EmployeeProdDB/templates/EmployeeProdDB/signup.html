@@ -1,0 +1,84 @@
+{% load static %}
+
+<!doctype html>
+<head>
+    <title> Sign up </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-4.1.3-dist/css/bootstrap.css' %}">
+    <link rel="icon" href="{% static 'images/halalan_2022_logo.png' %}" sizes="9x16">
+</head>
+<body>
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+              <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                  <div class="col-lg-6">
+                    <div class="card-body p-md-5 mx-md-4">
+      
+                      <div class="text-center">
+                        <img src="{% static 'images/halalan_2022_logo.png' %}" style="width: 150px;" alt="logo">
+                      </div>
+
+                      {% include 'EmployeeProdDB/messages.html' %}
+                      <div class="row">
+                          {% block content %}
+                          {% endblock %}
+                      </div>
+      
+                      <form method="POST" action="{% url 'signup' %}">{% csrf_token %}
+                        
+                        <h5 class="mb-4" style="font-family:'Poppins';">Sign up</h5>
+
+                        <label class="form-label" for="username" style="font-family:'Poppins';">Username: </label>
+                        <input class ="form-control" type="text" name="username" id="username" placeholder="Enter username@email.com" Required>
+                        <br>
+                        <label class="form-label" for="password" style="font-family:'Poppins';">Password: </label>
+                        <input class ="form-control" type="password" name="password" id="password" minlength="8" placeholder="Enter Password (min. 8 characters)" Required>
+                        <br>
+                        <label class="form-label" for="confirm_password" style="font-family:'Poppins';">Confirm Password: </label>
+                        <input class ="form-control" type="password" name="confirm_password" id="confirm_password" minlength="8" placeholder="Confirm Password" Required>
+                        <br>
+                        <label class="form-label" for="first_name" style="font-family:'Poppins';">First name: </label>
+                        <input class ="form-control" type="text" name="first_name" id="first_name" placeholder="Enter Firstname" Required>
+                        <br>
+                        <label class="form-label" for="last_name" style="font-family:'Poppins';">Last name: </label>
+                        <input class ="form-control" type="text" name="last_name" id="last_name" placeholder="Enter Lastname" Required>
+                        <br>
+                        <label class="form-label" for="birthday" style="font-family:'Poppins';">Birthday: </label>
+                        <input class ="form-control" type="text" name="birthday" id="birthday" placeholder= "format (yyyy-mm-dd)" Required>
+                        <br>
+                        <label class="form-label" for="sex" style="font-family:'Poppins';">Sex: </label>
+                        <input class ="form-control" type="text" name="sex" id="sex" placeholder="Enter sex" Required>
+                        <br>
+                        
+                        <div class="text-center">
+                          <button id=signupbtn class="btn btn-success btn-block fa-lg gradient-custom-2 mb-3" type="submit" style="font-family:'Poppins';">Submit</button>
+                        </div>
+                        
+                      </form>
+
+                      <div class="text-center">
+                        <a href="{% url 'loginpage' %}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="font-family:'Poppins';">Go back to Login</button></a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    <div class="text-white px-3 py-4 p-md-5 mx-md-4"><img src="{% static 'images/voting.png' %}" style="width: 300px;">
+                      <h5 class="mb-4" style="font-family:'Poppins';">Exercise your Right to Vote!</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <script src="{% static 'css/bootstrap-4.1.3-dist/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

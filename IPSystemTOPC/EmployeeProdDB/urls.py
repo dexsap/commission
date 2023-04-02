@@ -7,7 +7,8 @@ urlpatterns = [
     path('', views.loginpage, name='loginpage'),
     path('home/', views.home, name='home'),
     path('upload_csv/', views.upload_csv, name = 'upload_csv'),
-    path('show_csv_data/', views.show_csv_data, name ='show_csv_data')
+    path('show_csv_data/', views.show_csv_data, name ='show_csv_data'),
+    path('signup/', views.signup, name='signup')
     #path('', views.login_page, name='loginpage'),
 
 ]
