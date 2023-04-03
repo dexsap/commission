@@ -1,0 +1,125 @@
+body {
+    font-family: Helvetica ;
+}
+
+.employee-info-cont {
+    margin: 30px 50px 0px;
+    background-color: #00802D;
+    color: white;
+    width: 91.5%;
+    height: 100px;
+    margin-right: 50px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.employee-info-contact{
+    display: flex;
+    margin-right: 50px;
+}
+
+.employee-nameID {
+    display: flex;
+    height: 100%;
+    margin-left: 30px;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+
+}  
+
+#ID {
+    background-color: white;
+    color: #00802D;
+    border-radius: 4px;
+    padding: 3px;
+    font-weight: bold;
+}
+
+/* .employee-info-contact {
+    display: flex;
+    flex-direction: column;
+} */
+
+.SBP {
+    display: flex;
+    height: 100%;
+    margin-left: 30px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.SBP h6 {
+    font-size: 16px;
+    margin: 0px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.dashboard-options {
+    margin: 15px 50px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.print-out button {
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: white;
+    width: max-content;
+}
+
+.print-out button:hover {
+    background-color: #ddd;
+}
+
+.select-range {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.range-selected {
+    border-radius: 4px;
+    border: 1px solid black;
+    margin: 0px 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.range-selected:hover, .range-selected:focus {
+    
+    background-color: #00802B;
+    color: white;
+}
+
+.vert-line {
+    border: 0.5px solid grey;
+    height: 80%;
+    width: 0.3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    opacity: 50%;
+}
+
+.seperator {
+    display: flex;
+    justify-content: center;
+}
+
+.hori-line {
+    border: 0.5px solid grey;
+    width: 91.5%;
+    height: 0.3px;
+    margin-top: 15px;
+}
+
+.main {
+    margin-left: 85px;
+}

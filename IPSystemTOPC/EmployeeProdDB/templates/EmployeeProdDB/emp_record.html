@@ -1,0 +1,107 @@
+{% extends 'EmployeeProdDB/base.html' %} {% load static %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{% static 'css/emp_record.css' %}" />
+  <title>Employee Record</title>
+</head>
+<body>
+  <div class="employee-info-cont">
+    <div class="employee-nameID">
+      <h4 class="bold">March Leighton Chua</h4>
+      <div>
+        <span id="ID">ID# 1</span>
+        <span>Dataset: 44 Reports</span>
+      </div>
+    </div>
+    <div class="employee-info-contact">
+      <div class="SBP">
+        <h6>
+          Sex:
+          <span class="bold"> Male<!-- IMPORT INFO HERE --> </span>
+        </h6>
+        <h6>
+          Birthday:
+          <span class="bold"> 4/3/2023<!-- IMPORT INFO HERE --> </span>
+        </h6>
+        <h6>
+          Position: <span class="bold"> Leader<!-- IMPORT INFO HERE --> </span>
+        </h6>
+      </div>
+
+      <div class="SBP">
+        <h6>
+          Phone Number:
+          <span class="bold"> 098765143223<!-- IMPORT INFO HERE --> </span>
+        </h6>
+        <h6>
+          Email:
+          <span class="bold">
+            march.chua@obf.ateneo.edu<!-- IMPORT INFO HERE -->
+          </span>
+        </h6>
+        <h6>
+          Emergency Contact:
+          <span class="bold"> 0912344567<!-- IMPORT INFO HERE --> </span>
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-options">
+    <div class="select-range">
+        <div class="">
+            <button type="submit" class="range-selected">
+                Weekly
+            </button>
+        </div>
+
+        <div class="vert-line"></div>
+
+        <div>
+            <button type="submit" class="range-selected">
+                Monthly
+            </button>
+        </div>
+
+        <div class="vert-line"></div>
+
+        <div>
+            <button type="submit" class="range-selected">
+                Quarterly
+            </button>
+        </div>
+
+        <div class="vert-line"></div>
+
+        <div>
+            <button type="submit" class="range-selected">
+                Annually
+            </button>
+        </div>
+    </div>
+    <div class="print-out">
+        <button type="submit" class="">
+            Print Out
+        </button>
+    </div>
+  </div>
+
+    <div class="seperator">
+        <div class="hori-line"></div>
+    </div>
+
+    <!-- EXTEND CHART JS AND REMARKS PAGE HEREHERE HERE HERE HERE -->
+    <!--  DUNNO HOW TO EXTEND ANOTHER HTML HERE    -->
+</body>
+{% endblock %}

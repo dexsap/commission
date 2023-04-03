@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .models import Productivity, User
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
-from dateutil.parser import parse as parse_date
+# from dateutil.parser import parse as parse_date
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
@@ -174,3 +174,5 @@ def show_csv_data(request):
 #    return render(request, 'index.html')
     
 
+def emp_record(request):
+    return (render(request, 'EmployeeProdDB/emp_record.html'))
