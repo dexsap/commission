@@ -46,8 +46,6 @@ body {
 }
 
 .login-input-align input {
-    /* float: right; */
-    /* margin-top: 10px; */
     border-radius: 8px;
     border: 1px solid black;
     padding: 5px 10px;
@@ -79,20 +77,4 @@ body {
 .button-cancel {
     background-color: white;
     border: 1px solid black;
-}
-
-.base-logo {
-    width: 50px;
-    height: auto;
-}
-
-.base-logo img {
-    width: 50px;
-    height: auto;
-}
-
-.left-align-cont {
-    margin: auto;
-    display: flex;
-    justify-content: left;
 }
