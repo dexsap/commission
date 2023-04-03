@@ -1,0 +1,91 @@
+body {
+    font-family: Helvetica ;
+}
+
+.top-cont {
+    margin: 30px 50px 0px;
+}
+
+.top-cont textarea {
+    resize: none;
+    width: 75%;
+    height: 50px;
+    border-radius: 4px;
+    pointer-events: none;
+    margin-right: 30px;
+}
+
+.secondline {
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+
+.cf-button {
+    width: 20%;
+    border-radius: 4px;
+    border: 1px solid white;
+    height: 50px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00802B;
+    color: white;
+}
+    
+.upload-table-cont {
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+#input-file td, #input-file th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#input-file tr:nth-child(even){
+    background-color: #EAF6ED;
+}
+
+.file-name {
+    width: 95%;
+}
+
+.file-name:hover {
+    background-color: #ddd;
+}
+.remove-button {
+    border-radius: 4px;
+    border: 1px solid grey;
+    background-color: white;
+}
+
+.remove-button:hover {
+    background-color: lightgray;
+}
+
+.button-cont {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-cont button {
+    border-radius: 4px;
+    border: 1px solid;
+    padding: 5px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 15%;
+}
+
+.cancel-button {
+    background-color: white;
+    color:  black;
+}
+
+.confirm-button {
+    background-color: #00802B;
+    color: white;
+}

@@ -113,6 +113,11 @@ body {
 
 }
 
+.sidebar-button:hover {
+    background-color: #2C1206;
+    color: white;
+}
+
 .sidebar p {
     font-size: 12px;
     text-align: center;
