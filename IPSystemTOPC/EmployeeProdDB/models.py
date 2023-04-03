@@ -87,15 +87,10 @@ class History(models.Model):
 #            )
 #        ]
 
-class Dashboard(models.Model):
-    dashboard_id = models.CharField(max_length=10, primary_key=True)
-    employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
-    report_no = models.CharField(max_length=255)
-    timespan = models.DurationField()
-    displaytype = models.CharField(max_length=255)
-    total_workinghours = models.DurationField()
-    contribution = models.CharField(max_length=10)
-    avgprodscore = models.FloatField()
+class SummaryPR(models.Model):
+    productivity_score = models.IntegerField(max_length=3)
+    date = models.DateField()
+    totalworkhrs = models.DurationField()
 
 #    class Meta:
 #        constraints = [

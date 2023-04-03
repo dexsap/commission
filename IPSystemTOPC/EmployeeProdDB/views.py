@@ -2,10 +2,14 @@ import io
 import csv
 from datetime import datetime, timedelta
 from django.shortcuts import render, redirect
-from .models import Productivity, User
+from .models import Productivity, User, SummaryPR
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
 from dateutil.parser import parse as parse_date
+from django.shortcuts import render
+from django.views.generic import View
+from chartjs.views.lines import BaseLineChartView
+import Chart from 'chart.js/auto';
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
@@ -145,32 +149,41 @@ def upload_csv(request):
 
     return render(request, 'EmployeeProdDB/upload_csv.html')
 
+def chart_view(request):
+    # Define the data pool
+    data_pool = DataPool(
+        series=[{
+            'options': {
+                'source': SummaryPR.objects.all()
+            },
+            'terms': [
+                'my_field_1',
+                'my_field_2',
+            ]
+        }]
+    )
+
+    # Define the chart
+    chart = Chart(
+        datasource=data_pool,
+        series_options=[{
+            'options': {
+                'type': 'pie',
+                'stacking': False
+            },
+            'terms': {
+                'my_field_1': 'my_field_2'
+            }
+        }]
+    )
+
+    # Render the chart template
+    return render(request, 'chart_template.html', {
+        'chart': chart,
+    })
 
 def show_csv_data(request):
     csv_data = Productivity.objects.all()
     return render(request, 'EmployeeProdDB/show_csv_data.html', {'csv_data': csv_data})
-
-#def handle_file_upload(request):
-#    if request.method == 'POST':
-#        file = request.FILES.get('file-input')
-        # You can now process the file as needed
-        # ...
-#    return render(request, 'uploadpage.html')
-
-#def login_page(request):
-#        return render(request, 'loginpage.html')
-
-#def upload_file(request):
-#    if request.method == 'POST':
-#        form = Upload(request.POST.get('file'), request.FILES.get('file'))
-#        if form.is_valid():
-#            form.save()
-#            return redirect('success_url')
-#    else:
-#        form = Upload()
-#    return render(request, 'uploadpage.html', {'form': form})
-
-#def index(request):
-#    return render(request, 'index.html')
     
 
