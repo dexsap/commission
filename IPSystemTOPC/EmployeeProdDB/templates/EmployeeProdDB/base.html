@@ -1,27 +1,105 @@
 {% load static %}
 
-<!doctype html>
-<head>
-<!-- <title> Base Template </title> -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="icon" href="{% static 'images/topc_logo.png' %}" sizes="9x16">
-</head>
-<body>
-    <div id="topbar">
-        <a href="#"><img src="{% static 'images/topc_logo.jpg' %}" class="img logo rounded-circle mb-5" style="height: 50px; width: 50px;"></a>
-        <div id="topbar-text">
-            <h4>Thousand Oaks Packaging Corporation</h4>
-            <h2>Employee Performance</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+
+  <body>
+    <div class="base-header">
+      <div class="base-header-align">
+        <div class="base-logo">
+          <a href="#"
+            ><img
+              src="{% static 'images/topc_logo.jpg' %}"
+              class="img logo rounded-circle"
+          /></a>
         </div>
+
+        <div class="base-name-align">
+          <span>Thousand Oaks Packaging Corporation</span>
+          <h2>Employee Performance</h2>
+        </div>
+      </div>
+
+      <div class="user-identifier">
+        <p>
+          Signed in as:
+          <b
+            >test user
+            <!-- PUT INFO HERE --></b
+          >
+        </p>
+      </div>
     </div>
 
-    <!-- Page Content  -->
-            {% block content %}
-            {% endblock %}
-</body>
-<footer>
-    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script></p>
-</footer>
+    <div class="sidebar">
+      <div class="sidebar-icon-placing sidebar-button">
+        <div>
+          <div class="sidebar-hover">
+            <a href="">
+              <div class="icon-align sidebar-button">
+                <i class="gg-list"></i>
+              </div>
+              <p>Record List</p>
+            </a>
+          </div>
+
+          <div class="sidebar-hover">
+            <a href="">
+              <div class="icon-align sidebar-button">
+                <i class="gg-user-add"></i>
+              </div>
+              <p>Add Profile</p>
+            </a>
+          </div>
+
+          <div class="sidebar-hover">
+            <a href="">
+              <div class="icon-align sidebar-button">
+                <i class="gg-import"></i>
+              </div>
+              <p>Import Data</p>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-hover">
+          <a href="">
+            <div class="icon-align sidebar-button">
+              <i class="gg-log-out"></i>
+            </div>
+            <p>Log Out</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">{% block content %}{% endblock %}</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+
+    <footer>
+      <p class="footer">
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+      </p>
+    </footer>
+  </body>
 </html>

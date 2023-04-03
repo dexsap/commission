@@ -1,0 +1,80 @@
+body {
+    font-family: Helvetica ;
+}
+
+.centercont {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.loginheader {
+    background-color: #00802B;
+    color: white;
+    text-transform: uppercase;
+    font-family: Helvetica, Arial, sans-serif; 
+}
+
+.loginheader span {
+    font-size: 14px;
+}
+
+.headertextcontainer {
+    margin-top: 16px;
+}
+
+.login-logo {
+    margin: 20px;
+}
+
+.login-logo img {
+    width: 150px;
+    height: auto;
+}
+
+.column-direction {
+    flex-direction: column;
+    align-items: center;
+}
+
+.column-direction b {
+    font-size: 24px;
+}
+
+.login-input-align {
+    margin: 5px;
+}
+
+.login-input-align input {
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.login-box {
+    width: 350px;
+}
+
+.login-button {
+    width: 200px;
+    border: 1px solid white;
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+.login-borders {
+    border-radius: 4px;
+}
+
+.button-login {
+    background-color: #00802B;
+    color: white;
+}
+
+.button-cancel {
+    background-color: white;
+    border: 1px solid black;
+}
