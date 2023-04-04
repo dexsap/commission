@@ -8,7 +8,10 @@ from django.utils.dateparse import parse_date, parse_duration
 # from dateutil.parser import parse as parse_date
 
 def home(request):
-        return render(request, 'EmployeeProdDB/home.html')
+    return render(request, 'EmployeeProdDB/home.html')
+
+def signin(request):
+    return render(request, 'EmployeeProdDB/signin.html')
 
 def signup(request):
     if request.method == 'POST':
