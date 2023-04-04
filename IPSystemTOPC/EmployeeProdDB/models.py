@@ -87,8 +87,13 @@ class History(models.Model):
 #            )
 #        ]
 
-class SummaryPR(models.Model):
-    productivity_score = models.IntegerField(max_length=3)
+# class SummaryPR(models.Model):
+#     productivity_score = models.IntegerField()
+#     date = models.DateField()
+#     totalworkhrs = models.DurationField()
+
+class SummaryReport(models.Model):
+    prod_score = models.IntegerField()
     date = models.DateField()
     totalworkhrs = models.DurationField()
 

@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Prod Score</th>
+            <th>Total Work Hrs</th>
+            <!-- add more headers for additional fields -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in csv_data %}
+            <tr>
+                <td>{{ row.date}}</td>
+                <td>{{ row.productivity_score }}</td>
+                <td>{{ row.totalworkhrs }}</td>
+                <!-- add more cells for additional fields -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

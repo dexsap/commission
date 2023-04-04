@@ -2,14 +2,14 @@ import io
 import csv
 from datetime import datetime, timedelta
 from django.shortcuts import render, redirect
-from .models import Productivity, User, SummaryPR
+from .models import Productivity, User, SummaryReport
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
 from dateutil.parser import parse as parse_date
 from django.shortcuts import render
 from django.views.generic import View
-from chartjs.views.lines import BaseLineChartView
-import Chart from 'chart.js/auto';
+# from chartjs.views.lines import BaseLineChartView
+# import Chart from 'chart.js/auto';
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
@@ -149,41 +149,43 @@ def upload_csv(request):
 
     return render(request, 'EmployeeProdDB/upload_csv.html')
 
-def chart_view(request):
-    # Define the data pool
-    data_pool = DataPool(
-        series=[{
-            'options': {
-                'source': SummaryPR.objects.all()
-            },
-            'terms': [
-                'my_field_1',
-                'my_field_2',
-            ]
-        }]
-    )
+# # def chart_view(request):
+#     # Define the data pool
+#     data_pool = DataPool(
+#         series=[{
+#             'options': {
+#                 'source': SummaryPR.objects.all()
+#             },
+#             'terms': [
+#                 'my_field_1',
+#                 'my_field_2',
+#             ]
+#         }]
+#     )
 
-    # Define the chart
-    chart = Chart(
-        datasource=data_pool,
-        series_options=[{
-            'options': {
-                'type': 'pie',
-                'stacking': False
-            },
-            'terms': {
-                'my_field_1': 'my_field_2'
-            }
-        }]
-    )
+#     # Define the chart
+#     chart = Chart(
+#         datasource=data_pool,
+#         series_options=[{
+#             'options': {
+#                 'type': 'pie',
+#                 'stacking': False
+#             },
+#             'terms': {
+#                 'my_field_1': 'my_field_2'
+#             }
+#         }]
+#     )
 
-    # Render the chart template
-    return render(request, 'chart_template.html', {
-        'chart': chart,
-    })
+#     # Render the chart template
+#     return render(request, 'chart_template.html', {
+#         'chart': chart,
+#     })
 
 def show_csv_data(request):
     csv_data = Productivity.objects.all()
     return render(request, 'EmployeeProdDB/show_csv_data.html', {'csv_data': csv_data})
     
-
+def show_csv_data2(request):
+    csv_data = SummaryReport.objects.all()
+    return render(request, 'EmployeeProdDB/show_csv_data2.html', {'csv_data': csv_data})
