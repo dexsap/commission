@@ -9,9 +9,20 @@ from django.utils.dateparse import parse_date, parse_duration
 from django.views.generic import View
 # from chartjs.views.lines import BaseLineChartView
 # import Chart from 'chart.js/auto';
+from django.contrib.auth.decorators import login_required
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
+
+
+def my_view(request):
+    user = User.objects.getUsername()
+    return render(request, 'EmployeeProdDB/base.html', {'user': user})
+
+# def show_csv_data2(request):
+#     csv_data = SummaryReport.objects.all()
+#     return render(request, 'EmployeeProdDB/show_csv_data2.html', {'csv_data': csv_data})
+
 
 def signup(request):
     if request.method == 'POST':
@@ -107,92 +118,92 @@ def upload_csv(request):
 
 
 
-def upload_csv(request):
-    if request.method == 'POST':
-        csv_file = request.FILES['csv_file']
-        if not csv_file.name.endswith('.csv'):
-            messages.error(request, 'This is not a CSV file')
-        else:
-            # read the data from the uploaded file
-            csv_data = csv.reader(
-                (line.decode('utf-8') for line in csv_file),
-                delimiter=',',
-                quotechar='"'
-            )
+# def upload_csv(request):
+#     if request.method == 'POST':
+#         csv_file = request.FILES['csv_file']
+#         if not csv_file.name.endswith('.csv'):
+#             messages.error(request, 'This is not a CSV file')
+#         else:
+#             # read the data from the uploaded file
+#             csv_data = csv.reader(
+#                 (line.decode('utf-8') for line in csv_file),
+#                 delimiter=',',
+#                 quotechar='"'
+#             )
 
-            encountered_empty_row = False
+#             encountered_empty_row = False
 
-            # Loop through data rows
-            for i, row in enumerate(csv_data):
-                # Check if this row is the start of a new report
-                if row[0] == 'PRODUCTIVITY REPORT':
-                    # Reset variables for the new report
-                    report_no = row[1]
-                    employee = None
-                    prod_date = None
-                    workinghours = None
-                    remarks = None
-                    prod_score = None
-                    joborder_no = None
-                    process = None
-                    status = None
+#             # Loop through data rows
+#             for i, row in enumerate(csv_data):
+#                 # Check if this row is the start of a new report
+#                 if row[0] == 'PRODUCTIVITY REPORT':
+#                     # Reset variables for the new report
+#                     report_no = row[1]
+#                     employee = None
+#                     prod_date = None
+#                     workinghours = None
+#                     remarks = None
+#                     prod_score = None
+#                     joborder_no = None
+#                     process = None
+#                     status = None
 
-                    # Skip 8 rows
-                    count = 0
-                    while count < 8:
-                        next(csv_data)
-                        count += 1
+#                     # Skip 8 rows
+#                     count = 0
+#                     while count < 8:
+#                         next(csv_data)
+#                         count += 1
 
-                    # Reset the flag for encountered empty row
-                    encountered_empty_row = False
+#                     # Reset the flag for encountered empty row
+#                     encountered_empty_row = False
 
-                    # Read headers from 9th row
-                    headers = next(csv_data)
-                    jo_no_index = headers.index('JO NO')
-                    status_index = headers.index('Status')
-                    process_index = headers.index('Process')
-                    duration_index = headers.index('Duration')
-                    remarks_index = headers.index('Remarks')
-                elif all(cell == '' for cell in row):
-                    # Check if an empty row has been encountered before
-                    if encountered_empty_row:
-                        # Stop processing data as we have encountered two consecutive empty rows
-                        break
-                    else:
-                        # Set the flag to indicate that an empty row has been encountered
-                        encountered_empty_row = True
-                else:
-                    # Read data from the row
-                    joborder_no = row[jo_no_index]
-                    status = row[status_index]
-                    process = row[process_index]
-                    workinghours = row[duration_index]
-                    remarks = row[remarks_index]
+#                     # Read headers from 9th row
+#                     headers = next(csv_data)
+#                     jo_no_index = headers.index('JO NO')
+#                     status_index = headers.index('Status')
+#                     process_index = headers.index('Process')
+#                     duration_index = headers.index('Duration')
+#                     remarks_index = headers.index('Remarks')
+#                 elif all(cell == '' for cell in row):
+#                     # Check if an empty row has been encountered before
+#                     if encountered_empty_row:
+#                         # Stop processing data as we have encountered two consecutive empty rows
+#                         break
+#                     else:
+#                         # Set the flag to indicate that an empty row has been encountered
+#                         encountered_empty_row = True
+#                 else:
+#                     # Read data from the row
+#                     joborder_no = row[jo_no_index]
+#                     status = row[status_index]
+#                     process = row[process_index]
+#                     workinghours = row[duration_index]
+#                     remarks = row[remarks_index]
 
-                    # Convert working hours to a Duration object
-                    if workinghours:
-                        hours, minutes = map(int, workinghours.split(':'))
-                        workinghours = timedelta(hours=hours, minutes=minutes)
+#                     # Convert working hours to a Duration object
+#                     if workinghours:
+#                         hours, minutes = map(int, workinghours.split(':'))
+#                         workinghours = timedelta(hours=hours, minutes=minutes)
 
-                    # Create a new productivity object
-                    Productivity.objects.create(
-                        #report_no=report_no,
-                        #employee=employee,
-                        #prod_date=prod_date,
-                        workinghours=workinghours,
-                        remarks=remarks,
-                        #prod_score=prod_score,
-                        joborder_no=joborder_no,
-                        process=process,
-                        status=status
-                    )
+#                     # Create a new productivity object
+#                     Productivity.objects.create(
+#                         #report_no=report_no,
+#                         #employee=employee,
+#                         #prod_date=prod_date,
+#                         workinghours=workinghours,
+#                         remarks=remarks,
+#                         #prod_score=prod_score,
+#                         joborder_no=joborder_no,
+#                         process=process,
+#                         status=status
+#                     )
 
-            return render(request, 'EmployeeProdDB/upload_csv.html', {'message': 'Data imported successfully!'})
+#             return render(request, 'EmployeeProdDB/upload_csv.html', {'message': 'Data imported successfully!'})
 
-    return render(request, 'EmployeeProdDB/upload_csv.html')
+#     return render(request, 'EmployeeProdDB/upload_csv.html')
 
-# # def chart_view(request):
-#     # Define the data pool
+# def chart_view(request):
+#     Define the data pool
 #     data_pool = DataPool(
 #         series=[{
 #             'options': {
