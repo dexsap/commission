@@ -1,7 +1,44 @@
-{% extends 'base.html' %}
+<html>
+<head>
+    <title>Bar Chart Example using Chart.js</title>
+    <!-- Load Chart.js from jsdelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<!-- <body>
+    <canvas id="myChart"></canvas>
+    <script>
+        // Get the data from the server using Django templates
+        const data = JSON.parse('{{ summary_data | safe }}');
 
-{% block content %}
-    <div id="chart-container">
-        {{ chart|safe }}
-    </div>
-{% endblock %}
+        // Get the labels and values from the data
+        const labels = data.map(entry => entry.employee_name);
+        const values = data.map(entry => entry.prod_score);
+
+        // Create a new Chart.js instance
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Productivity Score',
+                    data: values,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body> -->
+</html>
+

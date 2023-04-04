@@ -22,7 +22,7 @@ class Employee(models.Model):
 #        db_table = 'employee'
 
 class Productivity(models.Model):
-    report_no = models.AutoField(max_length=10, primary_key=True)
+    report_no = models.AutoField(primary_key=True)
     #employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
     prod_date = models.DateField(null=True)
     workinghours = models.DurationField()
@@ -94,8 +94,8 @@ class History(models.Model):
 
 class SummaryReport(models.Model):
     sr_no = models.AutoField(primary_key=True)
-    employee_name = models.CharField(max_length=255)
-    prod_score = models.IntegerField()
+    employee_name = models.CharField(max_length=255, default="No Name")
+    prod_score = models.FloatField()
     date = models.DateField()
     totalworkhrs = models.DurationField()
 
