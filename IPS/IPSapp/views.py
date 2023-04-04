@@ -12,6 +12,7 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.http import JsonResponse
+from django.utils import timezone
 
 def home(request):
         return render(request, 'EmployeeProdDB/home.html')
@@ -113,10 +114,6 @@ def loginpage(request):
 #     return render(request, 'EmployeeProdDB/upload_csv.html')
 
 
-
-
-
-
 def upload_csv(request):
     if request.method == 'POST':
         csv_file = request.FILES['csv_file']
@@ -147,14 +144,54 @@ def upload_csv(request):
     return render(request, 'EmployeeProdDB/upload_csv.html')
 
 
+
+
 def chart_template(request):
-    data = SummaryReport.objects.values('employee_name').annotate(total_prod_score=Sum('prod_score')).order_by('-total_prod_score')[:10]
-    labels = list(map(lambda x: x['employee_name'], data))
-    data = list(map(lambda x: x['total_prod_score'], data))
-    return render(request, 'EmployeeProdDB/chart_template.html', {
-        'labels': labels,
-        'data': data,
-    })
+    data = SummaryReport.objects.all()
+    # Get the start and end dates from the request GET parameters
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    # Set default values if the dates are not provided
+    if not start_date:
+        start_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    if not end_date:
+        end_date = datetime.now().strftime('%Y-%m-%d')
+
+    # Query the SummaryReport model to get the daily productivity scores
+    daily_scores = []
+    test1array = []
+    test2array = []
+    for day in range(7):
+        date = (datetime.strptime(start_date, '%Y-%m-%d') + timedelta(days=day)).date()
+        total_score = SummaryReport.objects.filter(date=date).aggregate(total_score=Sum('prod_score'))['total_score']
+        #test1 = SummaryReport.objects.filter(date=date)
+        test1 = SummaryReport.objects.filter(date=date).values()
+        test2 = test1.aggregate(total_score=Sum('prod_score'))['total_score']
+
+        daily_scores.append(total_score or 0)
+        test1array.append(test1)
+        test2array.append(test2)
+
+    # Pass the data to the template context
+    context = {
+        'a1' : test1array,
+        'a2' : test2array,
+        'data' : data,
+        'start_date': start_date,
+        'end_date': end_date,
+        'daily_scores': daily_scores
+    }
+    return render(request, 'EmployeeProdDB/chart_template.html', context)
+
+# def chart_template(request):
+#     data = SummaryReport.objects.values('employee_name').annotate(total_prod_score=Sum('prod_score')).order_by('-total_prod_score')[:10]
+#     labels = list(map(lambda x: x['employee_name'], data))
+#     data = list(map(lambda x: x['total_prod_score'], data))
+#     return render(request, 'EmployeeProdDB/chart_template.html', {
+#         'labels': labels,
+#         'data': data,
+#     })
 
 
 

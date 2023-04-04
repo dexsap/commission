@@ -99,6 +99,21 @@ class SummaryReport(models.Model):
     date = models.DateField()
     totalworkhrs = models.DurationField()
 
+    def getSrno(self):
+        return self.sr_no
+    
+    def getEmployeename(self):
+        return self.employee_name
+    
+    def getProdScore(self):
+        return self.prod_score
+    
+    def getDate(self):
+        return self.date
+    
+    def __str__(self):
+        return "pk: " + str(self.pk) + ": " + self.sr_no + ", " + self.employee_name + ", " + self.prod_score + ", " + self.date
+
 #    class Meta:
 #        constraints = [
 #            models.ForeignKeyConstraint(
