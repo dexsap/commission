@@ -179,3 +179,6 @@ def show_csv_data(request):
 
 def emp_record(request):
     return (render(request, 'EmployeeProdDB/emp_record.html'))
+
+def create_emp_profile(request):
+    return (render(request, 'EmployeeProdDB/create_emp_profile.html'))
