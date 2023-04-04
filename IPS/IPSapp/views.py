@@ -76,6 +76,49 @@ def upload_csv(request):
                 delimiter=',',
                 quotechar='"'
             )
+            #Loop through data rows
+            for i, row in enumerate(csv_data):
+                # Check if this row is the start of a new report
+                if row[0] == 'PRODUCTIVITY REPORT':
+                    # Reset variables for the new report
+                    sr_no = row[1]
+                    employee_name= None
+                    prod_score = None
+                    date = None
+                    totalworkhrs = None
+                # Check if this is the fifth row after the start of the report
+                elif i == 4 and employee_name is None:
+                    employee_name = row[0]
+                # Check if this row contains a date and "Total Duration:" and "Productivity %"
+                    if len(row) > 2 and "/" in row[0] and "Total Duration:" in row and "Productivity %" in row:
+                        date = datetime.strptime(row[0], '%m/%d/%Y').date()
+                        totalworkhrs = timedelta(hours=float(row[row.index("Total Duration:") + 2]))
+                        prod_score = int(row[row.index("Productivity %") + 2])
+                        summary_pr = SummaryReport.objects.create(sr_no=sr_no, employee_name=employee_name, prod_score=prod_score, date=date, totalworkhrs=totalworkhrs)
+                        summary_pr.save()
+            return redirect('home')
+    return render(request, 'EmployeeProdDB/upload_csv.html')
+
+
+
+
+
+
+
+
+
+def upload_csv(request):
+    if request.method == 'POST':
+        csv_file = request.FILES['csv_file']
+        if not csv_file.name.endswith('.csv'):
+            messages.error(request, 'This is not a CSV file')
+        else:
+            # read the data from the uploaded file
+            csv_data = csv.reader(
+                (line.decode('utf-8') for line in csv_file),
+                delimiter=',',
+                quotechar='"'
+            )
 
             encountered_empty_row = False
 

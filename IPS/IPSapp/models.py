@@ -93,6 +93,8 @@ class History(models.Model):
 #     totalworkhrs = models.DurationField()
 
 class SummaryReport(models.Model):
+    sr_no = models.AutoField(primary_key=True)
+    employee_name = models.CharField(max_length=255)
     prod_score = models.IntegerField()
     date = models.DateField()
     totalworkhrs = models.DurationField()

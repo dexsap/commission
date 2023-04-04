@@ -1,6 +1,8 @@
 <table>
     <thead>
         <tr>
+            <th>SR No</th>
+            <th>Employee Name</th>
             <th>Date</th>
             <th>Prod Score</th>
             <th>Total Work Hrs</th>
@@ -10,6 +12,8 @@
     <tbody>
         {% for row in csv_data %}
             <tr>
+                <td>{{ row.sr_no}}</td>
+                <td>{{ row.employee_name}}</td>
                 <td>{{ row.date}}</td>
                 <td>{{ row.productivity_score }}</td>
                 <td>{{ row.totalworkhrs }}</td>
