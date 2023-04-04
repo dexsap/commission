@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>Report Number</th>
+            <th>Employee ID</th>
+            <th>Prod Date</th>
+            <th>Working Hours</th>
+            <th>Remarks</th>
+            <th>Prod Score</th>
+            <!-- add more headers for additional fields -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in csv_data %}
+            <tr>
+                <td>{{ row.report_no }}</td>
+                <td>{{ row.employee_id }}</td>
+                <td>{{ row.prod_date }}</td>
+                <td>{{ row.workinghours }}</td> 
+                <td>{{ row.remarks }}</td>
+                <td>{{ row.prod_score }}</td>
+                <!-- add more cells for additional fields -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,78 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/search.css');
+
+body {
+    font-family: Helvetica ;
+}
+
+.search-and-add-cont {
+    margin: 30px 50px 0px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content:  space-between;
+}
+
+.search-and-add-cont button {
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+
+.searchbar {
+    width: 78%;
+    
+}
+
+.searchbar input {
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin-right: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.login-borders {
+    border-radius: 4px;
+}
+
+.add-button {
+    
+}
+
+.add-profile-button {
+    width: 200px;
+    height: 50px;
+    background-color: #00802B;
+    color: white;
+    border: none;
+}
+
+#employee {
+    width: 91.5%;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* display: flex;
+    /* flex-direction: column; */
+    /* justify-content:  space-between; */
+}
+
+#employee th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #00802D;
+    color: white;
+}
+
+#employee td, #employee th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#employee tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#employee tr:hover {
+    background-color: #ddd;
+}
