@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import io
 import csv
 from datetime import datetime, timedelta
-from .models import Productivity, User, SummaryReport
+from .models import Productivity, IPSUser, SummaryReport
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_duration
 # from dateutil.parser import parse as parse_date
@@ -20,7 +20,7 @@ def home(request):
 
 
 def my_view(request):
-    user = User.objects.getUsername()
+    user = IPSUser.objects.getUsername()
     return render(request, 'EmployeeProdDB/base.html', {'user': user})
 
 # def show_csv_data2(request):
@@ -39,11 +39,11 @@ def signup(request):
         sex = request.POST.get('sex')
 
         if pword==confirm_pword:
-            if User.objects.filter(username=uname).exists():
+            if IPSUser.objects.filter(username=uname).exists():
                 messages.error(request, 'Username already taken.')
                 return redirect('signup')
             else:
-                user = User.objects.create(username = uname, password = pword, first_name = fname, last_name = lname, birthday = bday, sex = sex)
+                user = IPSUser.objects.create(username = uname, password = pword, first_name = fname, last_name = lname, birthday = bday, sex = sex)
                 user.save()
                 messages.success(request, 'User account created.')
                 return redirect('loginpage')
@@ -60,10 +60,10 @@ def loginpage(request):
         uname = request.POST.get('username')
         pword = request.POST.get('password')
 
-        accountList = User.objects.filter(username = uname)
+        accountList = IPSUser.objects.filter(username = uname)
 
         if(len(accountList) > 0):
-            findUser = User.objects.get(username= uname)
+            findUser = IPSUser.objects.get(username= uname)
 
             if(findUser.getPassword() == pword):
                 global loggedInUser

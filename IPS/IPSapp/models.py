@@ -128,7 +128,7 @@ class SummaryReport(models.Model):
 #            )
 #        ]
 
-class User(models.Model):
+class IPSUser(models.Model):
     username = models.CharField(max_length=300, unique=True)
     password = models.CharField(max_length=300)
     first_name = models.CharField(max_length=300)
