@@ -15,7 +15,8 @@ from django.http import JsonResponse
 from django.utils import timezone
 
 def home(request):
-        return render(request, 'EmployeeProdDB/home.html')
+        csv_data = SummaryReport.objects.all()
+        return render(request, 'EmployeeProdDB/home.html', {'csv_data': csv_data})
 
 
 def my_view(request):
@@ -320,4 +321,11 @@ def show_csv_data2(request):
     csv_data = SummaryReport.objects.all()
     return render(request, 'EmployeeProdDB/show_csv_data2.html', {'csv_data': csv_data})
 
-# Create your views here.
+def signin(request):
+    return render(request, 'EmployeeProdDB/signin.html')
+
+def emp_record(request):
+    return render(request, 'EmployeeProdDB/emp_record.html')
+
+def create_emp_profile(request):
+    return render(request, 'EmployeeProdDB/create_emp_profile.html')

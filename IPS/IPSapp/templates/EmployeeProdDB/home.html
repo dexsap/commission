@@ -22,43 +22,40 @@
 
     </div>
     <div class="add-button">
-      <button type="submit" class="login-borders add-profile-button">
+      <button type="submit" class="add-profile-button">
         Add Profile
       </button>
     </div>
   </div>
 
+  
+  <!-- TABLE -->
+  <div class="employee-table-cont">
+  <table id="employee">
+    <tr>
+      <th>Summary Report No.</th>
+      <th>Employee Name</th>
+      <th>Date</th>
+      <th>Productivity Score</th>
+      <th>Total Work Hours</th>
+    </tr>
+    {% for row in csv_data %}
+    <tr>
+        <td>{{ row.sr_no}}</td>
+        <td>{{ row.employee_name}}</td>
+        <td>{{ row.date}}</td>
+        <td>{{ row.prod_score }}</td>
+        <td>{{ row.totalworkhrs }}</td>
+        <!-- add more cells for additional fields -->
+    </tr>
+    {% endfor %}
+  </table> 
+  </div>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
     crossorigin="anonymous"
   ></script>
-
-  <!-- TABLE -->
-  <table id="employee">
-    <tr>
-        <th>ID</th>
-        <th>Employee Name</th>
-        <th>Last Record Update</th>
-        <th>Position</th>
-        <th>Team</th>
-    </tr>
-    <tr><td>1</td>
-        <td>Juan Dela Cruz</td>
-        <td>Jan 12, 2022</td>
-        <td>Packager</td>
-        <td>Juan Dela Paz</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Jacob Vitug</td>
-        <td>Jan 12, 2022</td>
-        <td>Packager</td>
-        <td>Marc Chua</td>
-    </tr>
-    
-  </table>
-
 </body>
 
 {% endblock %}

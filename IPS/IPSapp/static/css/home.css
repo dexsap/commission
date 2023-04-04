@@ -19,7 +19,8 @@ body {
 
 .searchbar {
     width: 78%;
-    
+    background: url(images/comment-author.gif) no-repeat scroll 7px 7px;
+    padding-left: 30px;
 }
 
 .searchbar input {
@@ -31,12 +32,8 @@ body {
     height: 100%;
 }
 
-.login-borders {
-    border-radius: 4px;
-}
-
 .add-button {
-    
+    border: none;
 }
 
 .add-profile-button {
@@ -45,12 +42,23 @@ body {
     background-color: #00802B;
     color: white;
     border: none;
+    border-radius: 4px;
+}
+.add-button:hover {
+    background-color: #004316;
+}
+
+.employee-table-cont {
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 350px;
 }
 
 #employee {
     width: 91.5%;
     margin-top: 30px;
     margin-left: 50px;
+    height: 100%;
     /* display: flex;
     /* flex-direction: column; */
     /* justify-content:  space-between; */

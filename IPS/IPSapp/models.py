@@ -112,7 +112,7 @@ class SummaryReport(models.Model):
         return self.date
     
     def __str__(self):
-        return "pk: " + str(self.pk) + ": " + self.sr_no + ", " + self.employee_name + ", " + self.prod_score + ", " + self.date
+        return "pk: " + str(self.pk) + ": " + str(self.sr_no) + ", " + self.employee_name + ", " + str(self.prod_score) + ", " + str(self.date)
 
 #    class Meta:
 #        constraints = [

@@ -37,7 +37,7 @@
         <p>
           Signed in as:
           <b
-            >{{ user }}
+            >marc leighton chua
             <!-- PUT INFO HERE --></b
           >
         </p>
@@ -48,7 +48,7 @@
       <div class="sidebar-icon-placing sidebar-button">
         <div>
           <div class="sidebar-hover">
-            <a href="">
+            <a href="{% url 'home' %}">
               <div class="icon-align sidebar-button">
                 <i class="gg-list"></i>
               </div>
@@ -66,7 +66,7 @@
           </div>
 
           <div class="sidebar-hover">
-            <a href="/upload_csv">
+            <a href="{% url 'upload_csv' %}">
               <div class="icon-align sidebar-button">
                 <i class="gg-import"></i>
               </div>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="sidebar-hover">
-          <a href="/">
+          <a href="">
             <div class="icon-align sidebar-button">
               <i class="gg-log-out"></i>
             </div>
